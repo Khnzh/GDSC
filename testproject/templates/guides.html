@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <!-- Navigation bar -->
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                  <a class="navbar-brand" href="http://127.0.0.1:8000/">Home</a>
+            </div>
+            <ul class="nav navbar-nav navbar-right">
+                <!-- <li>
+                    <a class="btn btn-link" href="">Logout</a>
+                    <a class="btn btn-link" href="">Tours</a>
+                    <a class="btn btn-link" href="">Guides</a>
+                </li> -->
+                {% if user.is_authenticated %}
+                <li>
+                    <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
+                    <a class="btn btn-link" href="http://127.0.0.1:8000/logout/">Logout</a>
+                    <a class="btn btn-link" href="http://127.0.0.1:8000/tours/">Tours</a>
+                    <a class="btn btn-link" href="http://127.0.0.1:8000/guides/">Guides</a>
+                </li>
+                {% else %}
+                <li>
+                    <form class="form-inline" action="http://127.0.0.1:8000/login/" method="post">
+                        {% csrf_token %}
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Username" name="username" >
+                            <input type="password" class="form-control" placeholder="Username" name="psw" >
+                            <button class="btn btn-primary" type="submit">Login</button>
+                            <a class="btn btn-link" href="http://127.0.0.1:8000/registration/">Sign Up</a>
+                        </div>
+                    </form>
+                    <a class="btn btn-link" href="http://127.0.0.1:8000/tours/">Tours</a>
+                    <a class="btn btn-link" href="http://127.0.0.1:8000/guides/">Guides</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </nav>
+
+    {% if guides_list %}
+        <div class="container">
+            <div class="card-deck">
+                {% for guide in guides_list %}
+                         <div class="card" style="width: 36rem;">
+                          <img class="card-img-left" src="{%static 'nanami.jpg'%}" width="240px" height="240px"
+                               alt="Tour image">
+                          <div class="card-body bg-light">
+                              <h5 class="card-title">{{ guide.name }} {{guide.last_name}}, <span class="text-success">
+                                  {{ guide.age}} years</span></h5>
+                            <ul>
+                                <li><h5>{{guide.experience}} years in this field</h5></li>
+                                <li><h5>Works on "{{guide.tours.name}}" tour</h5></li>
+                                {% if guide.sp_english %}
+                                <li><h5>Speaks english</h5></li>
+                                {%endif%}
+                                {% if guide.sp_spanish %}
+                                <li><h5>Speaks spanish</h5></li>
+                                {%endif%}
+                                {% if guide.sp_georgian %}
+                                <li><h5>Speaks georgian</h5></li>
+                                {%endif%}
+                                {% if guide.sp_japanese %}
+                                <li><h5>Speaks japanese</h5></li>
+                                {%endif%}
+                            </ul>
+                          </div>
+                        </div>
+                {% endfor %}
+            </div>
+        </div>
+    {% else %}
+        <p>No courses are available.</p>
+    {% endif %}
+    </body>
+    </html>
