@@ -9,6 +9,7 @@ urlpatterns = [
     path('tours/', views.ToursListView.as_view(), name='tours'),
     path('guides/', views.GuidesListView.as_view(), name='guides'),
     path('text-to-speech/', views.text_to_speech, name='text_to_speech'),
+    path('tts_js/', views.text_to_speech_js, name='text_to_speech_js'),
     # path("songs/", views.songs, name="songs"),
     # path("photos/", views.photos, name="photos"),
     # path("login/", views.login_view, name="login"),

@@ -81,7 +81,7 @@ class GuidesListView(generic.ListView):
 def text_to_speech(request):
     # Get the text to be converted to speech
     # text = request.GET.get('text', '')
-    text = "Hello everybody, let's move your body"
+    text = r"Embark on a captivating journey through Spain, where vibrant culture and rich history converge. Marvel at architectural wonders like the Sagrada Familia, explore the enchanting streets of Barcelona, savor exquisite tapas in Madrid."
 
     # Initialize the Text-to-Speech client
     client = texttospeech.TextToSpeechClient()
@@ -107,3 +107,6 @@ def text_to_speech(request):
 
     # Send the generated audio file as the HTTP response
     return HttpResponse(response.audio_content, content_type="audio/wav")
+
+def text_to_speech_js(request):
+    return render(request, "tts_js.html", {"message":"message"})

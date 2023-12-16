@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voice-over HTML with Google Text-to-Speech</title>
+</head>
+<body>
+
+    <h1>Welcome to My Website</h1>
+    <p>This is a sample HTML page that will be voice-overed using Google Text-to-Speech.</p>
+
+    <button onclick="speakText()">Speak Content</button>
+
+    <script>
+        function speakText() {
+            // Get all text content from the HTML body
+            const allText = document.body.innerText;
+
+            // Replace special characters that may cause issues in the URL
+            const encodedText = encodeURIComponent(allText);
+
+            // Construct the Google TTS API URL
+            const apiURL = `https://texttospeech.googleapis.com/v1beta1/'what the fuck':synthesize`
+
+            // Create an audio element
+            const audio = new Audio(apiURL);
+
+            // Play the audio
+            audio.play();
+        }
+    </script>
+
+</body>
+</html>
