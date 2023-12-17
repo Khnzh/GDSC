@@ -52,6 +52,7 @@
     <p id="output"></p>
 
     <script src="{% static 'app.js' %}"></script>
+    <button id="playButton">Play Audio</button>
     {% if tours %}
         <div class="container">
             <div class="card-deck">
@@ -63,15 +64,15 @@
                               <h5 class="card-title">{{tour.name}}, <span class="text-success">
                                   {{ tour.price}} euros</span></h5>
                             <p class="card-text">{{ tour.description}}</p>
-                            <audio controls id="player">
+                            <audio controls id="{{tour.id}}">
                                 <source src="{{tour.audio_desc.url }}" type="audio/wav">
                                 Your browser does not support the audio element.
                               </audio>
-                              <audio controls id="player">
+                              <audio controls id="a{{tour.id}}">
                                 <source src="{{tour.audio_name.url }}" type="audio/wav">
                                 Your browser does not support the audio element.
                               </audio>
-                              <audio controls id="player">
+                              <audio controls id="b{{tour.id}}">
                                 <source src="{{tour.audio_price.url }}" type="audio/wav">
                                 Your browser does not support the audio element.
                               </audio>

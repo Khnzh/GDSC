@@ -5,6 +5,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.models import User
+import json
 from .models import Test
 from django.views import generic
 import logging
@@ -63,13 +64,19 @@ def login_request(request):
 @csrf_exempt    
 def tours_list(request):
     if request.method == "POST":
-        print(request.body)
-        # new = Test.objects.get(id=1)
-        # new.field1 = str(request.POST['name'])
+        json_string = request.body.decode('utf-8')
+
+        # Step 2: Parse the JSON string into a Python dictionary
+        data_dict = json.loads(json_string)
+
+        # Now 'data_dict' contains your JSON data as a Python dictionary
+        print(data_dict)
+        Test.objects.create(field1=data_dict['name'])
         return HttpResponseRedirect(reverse('index'))
-    context = {}
-    context['tours']=Tour.objects.all()
-    return render(request, 'tours.html', context)
+    else:
+        context = {}
+        context['tours']=Tour.objects.all()
+        return render(request, 'tours.html', context)
 
 
 # class ToursListView(generic.ListView):

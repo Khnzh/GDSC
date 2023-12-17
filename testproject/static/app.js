@@ -18,7 +18,7 @@ const main = () => {
     };
 
     recognition.onresult = (event) => {
-      let result =
+      var result =
         event.results[event.results.length - 1][0].transcript.toLowerCase();
       console.log(result);
 
@@ -27,10 +27,12 @@ const main = () => {
       } else if (result.includes("stop") && isListening) {
         stopListening();
       } else if (isListening) {
-        output.textContent = result;
+        output.textContent = result
+        
 
         // Make a POST request to the server
         sendSpeechResult(result);
+        yourFunction(result);
       }
     };
 
@@ -55,6 +57,45 @@ const stopListening = () => {
   isListening = false;
   info.textContent = "Listening for keyword...";
 };
+function yourFunction(result) {
+  // Use the result variable here
+  if (result !== null && result !== undefined) {
+      // Get the audio element by its ID
+      outp = result.replace(/\s/g, "")
+      console.log(outp)
+      switch (outp) {
+        case 'readfirstdescription.':
+          console.log('true');
+          audioElement = document.getElementById('11');
+          break;
+        case 'readseconddescription.':
+          console.log('true');
+          audioElement = document.getElementById('12');
+          break;
+        case 'readthirddescription.':
+          console.log('true');
+          audioElement = document.getElementById('13');
+          break;
+        default:
+          // Handle the case where outp doesn't match any of the specified values
+          console.log('Not a recognized description.');
+      }
+// var audioElement = document.getElementById('11');
+  // Play the audio
+  if (audioElement) {
+      audioElement.play();
+  }
+  }
+}
+// if (result !== null && result !== undefined) {
+//   // Get the audio element by its ID
+//   var audioElement = document.getElementById('11');
+
+//   // Play the audio
+//   if (audioElement) {
+//       audioElement.play();
+//   }
+// }
 
 const sendSpeechResult = (result) => {
   // Make a POST request to the server
@@ -71,6 +112,7 @@ const sendSpeechResult = (result) => {
     .then(data => console.log("Server response:", data))
     .catch(error => console.error("Error sending POST request:", error));
 };
+
 // const sendSpeechResult = (result) => {
 //   fetch("http://127.0.0.1:8000/tours/", {
 //     method: "POST",
@@ -94,5 +136,34 @@ const sendSpeechResult = (result) => {
 //     });
 // };
 
+document.addEventListener("DOMContentLoaded", main)
+document.addEventListener("DOMContentLoaded", function(){
+  function playAudio() {
+    // Get the audio element by its ID
+    var audio = document.getElementById('11');
+  
+    // Play the audio
+    audio.play();
+  }
+  
+  // Attach the playAudio function to the button click event
+  document.getElementById('playButton').addEventListener('click', playAudio);
+});
+// document.addEventListener("DOMContentLoaded", function(){
+//   function checkk() {if (result != null) {
+//   // Variable is not null or undefined
+//   console.log("Variable is not null or undefined:", result);
+// }}})
+// document.addEventListener("DOMContentLoaded", function(){function addExtraLine() {
+//   // Create a new paragraph element
+//   var newParagraph = document.createElement('p');
 
-document.addEventListener("DOMContentLoaded", main);
+//   // Set the content of the new paragraph
+//   newParagraph.textContent = `<script src="{% static 'app.js' %}"></script>`;
+
+//   // Append the new paragraph to the document body
+//   document.body.appendChild(newParagraph);
+// }
+
+// // Attach the addExtraLine function to the button click event
+// document.getElementById('addLineButton').addEventListener('click', addExtraLine);})
