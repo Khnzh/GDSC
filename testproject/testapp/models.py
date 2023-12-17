@@ -68,16 +68,6 @@ class Guide(models.Model):
     image = models.CharField(max_length=50)
     tours = models.ManyToManyField(Tour)
 
-class YourModel(models.Model):
+class Test(models.Model):
     field1 = models.CharField(default="take your dream and hold it as it is your life", max_length = 200)
-    field2 = models.FileField( upload_to =  'static/', default='tests.py')
-
-    # def save(self, *args, **kwargs):
-    #     # Your custom logic to determine the value of field2 based on field1
-    #     a_path = synthesize_text(self.field1, f"{self.id}.wav")
-    #     with open(a_path, 'rb') as audio_file:
-    #         self.field2.save(f"{self.id}.wav", audio_file, save=False)
-    #     # self.calculate_field2()
-
-    #     super().save(*args, **kwargs) 
 

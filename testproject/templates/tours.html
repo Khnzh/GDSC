@@ -48,15 +48,19 @@
         </div>
     </nav>
 
-    {% if tours_list %}
+    <p id="info"></p>
+    <p id="output"></p>
+
+    <script src="{% static 'app.js' %}"></script>
+    {% if tours %}
         <div class="container">
             <div class="card-deck">
-                {% for tour in tours_list %}
+                {% for tour in tours %}
                          <div class="card" style="width: 36rem;">
                           <img class="card-img-left" src="{% static tour.image %}" width="240px" height="240px"
                                alt="Tour image">
                           <div class="card-body bg-light">
-                              <h5 class="card-title">{{ tour.name }}, <span class="text-success">
+                              <h5 class="card-title">{{tour.name}}, <span class="text-success">
                                   {{ tour.price}} euros</span></h5>
                             <p class="card-text">{{ tour.description}}</p>
                             <audio controls id="player">

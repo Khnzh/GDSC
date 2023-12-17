@@ -26,6 +26,10 @@ SECRET_KEY = 'django-insecure-v@o5tx&#$-fgy74p1fruqtr3y2&+@n+b6o45qxxp47fr!27z61
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+# ALLOWED_HOSTS = ['http://127.0.0.1:8000', 'http://127.0.0.1:8000/tours/', '127.0.0.1']
+
+# CSRF_TRUSTED_ORIGINS = ['http://127.0.0.1:8000', 'http://127.0.0.1:8000/tours/']
+
 ALLOWED_HOSTS = []
 
 
@@ -39,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'testapp',
-    'google.cloud.texttospeech'
+    'google.cloud.texttospeech',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -50,6 +55,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8000",
+    # Add other origins as needed
 ]
 
 ROOT_URLCONF = 'testproject.urls'
