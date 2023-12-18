@@ -7,6 +7,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <meta charset="UTF-8">
+
 </head>
 
 <body>
@@ -14,7 +15,7 @@
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
             <div class="navbar-header">
-                  <a class="navbar-brand" href="http://127.0.0.1:8000/">Home</a>
+                  <a class="navbar-brand" id="link-home" href="http://127.0.0.1:8000/">Home</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
                 <!-- <li>
@@ -26,8 +27,8 @@
                 <li>
                     <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
                     <a class="btn btn-link" href="http://127.0.0.1:8000/logout/">Logout</a>
-                    <a class="btn btn-link" href="http://127.0.0.1:8000/tours/">Tours</a>
-                    <a class="btn btn-link" href="http://127.0.0.1:8000/guides/">Guides</a>
+                    <a class="btn btn-link" id="link-tours" href="http://127.0.0.1:8000/tours/">Tours</a>
+                    <a class="btn btn-link" id="link-guides" href="http://127.0.0.1:8000/guides/">Guides</a>
                 </li>
                 {% else %}
                 <li>
@@ -47,7 +48,11 @@
             </ul>
         </div>
     </nav>
+    
+    <p id="info"></p>
+    <p id="output"></p>
 
+    <script src="{% static 'nav.js' %}"></script>
     {% if guides_list %}
         <div class="container">
             <div class="card-deck">
@@ -60,7 +65,6 @@
                                   {{ guide.age}} years</span></h5>
                             <ul>
                                 <li><h5>{{guide.experience}} years in this field</h5></li>
-                                <li><h5>Works on "{{guide.tours.name}}" tour</h5></li>
                                 {% if guide.sp_english %}
                                 <li><h5>Speaks english</h5></li>
                                 {%endif%}

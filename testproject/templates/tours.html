@@ -7,6 +7,35 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <meta charset="UTF-8">
+    <style>
+        #overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.5);
+        justify-content: center;
+        align-items: center;
+      }
+    
+      #popup {
+        background: rgba(255, 255, 255, 0);
+        padding: 20px;
+        border-radius: 20px;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+      }
+    
+      #closeBtn {
+        cursor: pointer;
+        width: 100%;
+        height: 100%;
+        color: #007bff;
+        margin-top: 10px;
+      }</style>
 </head>
 
 <body>
@@ -14,7 +43,7 @@
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
             <div class="navbar-header">
-                  <a class="navbar-brand" href="http://127.0.0.1:8000/">Home</a>
+                  <a class="navbar-brand" id="link-home" href="http://127.0.0.1:8000/">Home</a>
             </div>
             <ul class="nav navbar-nav navbar-right">
                 <!-- <li>
@@ -25,9 +54,9 @@
                 {% if user.is_authenticated %}
                 <li>
                     <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
-                    <a class="btn btn-link" href="http://127.0.0.1:8000/logout/">Logout</a>
-                    <a class="btn btn-link" href="http://127.0.0.1:8000/tours/">Tours</a>
-                    <a class="btn btn-link" href="http://127.0.0.1:8000/guides/">Guides</a>
+                    <a class="btn btn-link" id="link-logout" href="http://127.0.0.1:8000/logout/">Logout</a>
+                    <a class="btn btn-link" id="link-tours" href="http://127.0.0.1:8000/tours/">Tours</a>
+                    <a class="btn btn-link" id="link-guides" href="http://127.0.0.1:8000/guides/">Guides</a>
                 </li>
                 {% else %}
                 <li>
@@ -52,23 +81,23 @@
     <p id="output"></p>
 
     <script src="{% static 'app.js' %}"></script>
-    <button id="playButton">Play Audio</button>
+    <!-- <button id="playButton">Play Audio</button> -->
     {% if tours %}
         <div class="container">
             <div class="card-deck">
                 {% for tour in tours %}
                          <div class="card" style="width: 36rem;">
-                          <img class="card-img-left" src="{% static tour.image %}" width="240px" height="240px"
+                          <img class="card-img-right" src="{% static tour.image %}" width="240px" height="240px"
                                alt="Tour image">
                           <div class="card-body bg-light">
                               <h5 class="card-title">{{tour.name}}, <span class="text-success">
                                   {{ tour.price}} euros</span></h5>
                             <p class="card-text">{{ tour.description}}</p>
-                            <audio controls id="{{tour.id}}">
+                            <audio class="hidden" controls id="{{tour.id}}">
                                 <source src="{{tour.audio_desc.url }}" type="audio/wav">
                                 Your browser does not support the audio element.
                               </audio>
-                              <audio controls id="a{{tour.id}}">
+                              <audio class=".d-none" controls id="a{{tour.id}}">
                                 <source src="{{tour.audio_name.url }}" type="audio/wav">
                                 Your browser does not support the audio element.
                               </audio>
@@ -84,5 +113,47 @@
     {% else %}
         <p>No courses are available.</p>
     {% endif %}
-    </body>
+    <div id="overlay">
+        <div id="popup">
+          <p>This is a popup!</p>
+          <p id="closeBtn" onclick="closePopup()">Close</p>
+        </div>
+      </div>
+    <script>
+        // Function to open the popup
+        function openPopup() {
+          document.getElementById("overlay").style.display = "flex";
+        }
+  
+        // Function to close the popup
+        function closePopup() {
+          document.getElementById("overlay").style.display = "none";
+  
+          // Get the text to be spoken
+          var textToSpeak = "Welcome to tour page.";
+  
+          // Check if the browser supports the SpeechSynthesis API
+          if ("speechSynthesis" in window) {
+            var synthesis = window.speechSynthesis;
+  
+            // Create a new SpeechSynthesisUtterance object
+            var utterance = new SpeechSynthesisUtterance(textToSpeak);
+  
+            // Optional: Set voice and other parameters
+            utterance.voice = speechSynthesis.getVoices()[1];
+            utterance.pitch = 1;
+            utterance.rate = 1;
+            utterance.volume = 1;
+  
+            // Speak the text
+            synthesis.speak(utterance);
+          } else {
+            alert("Your browser does not support text-to-speech.");
+          }
+        }
+  
+        // Open the popup when the page loads
+        window.onload = openPopup;
+      </script>    
+</body>
     </html>

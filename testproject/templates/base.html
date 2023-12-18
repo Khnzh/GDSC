@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %} {#{% load staticfiles %}#}
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -25,8 +26,8 @@
                 <li>
                     <a class="btn btn-link" href="#">{{ user.first_name }}({{ user.username }})</a>
                     <a class="btn btn-link" href="http://127.0.0.1:8000/logout/">Logout</a>
-                    <a class="btn btn-link" href="http://127.0.0.1:8000/tours/">Tours</a>
-                    <a class="btn btn-link" href="http://127.0.0.1:8000/guides/">Guides</a>
+                    <a class="btn btn-link" id="link-tours" href="http://127.0.0.1:8000/tours/">Tours</a>
+                    <a class="btn btn-link" id="link-guides" href="http://127.0.0.1:8000/guides/">Guides</a>
                 </li>
                 {% else %}
                 <li>
@@ -39,14 +40,17 @@
                             <a class="btn btn-link" href="http://127.0.0.1:8000/registration/">Sign Up</a>
                         </div>
                     </form>
-                    <a class="btn btn-link" href="http://127.0.0.1:8000/tours/">Tours</a>
-                    <a class="btn btn-link" href="http://127.0.0.1:8000/guides/">Guides</a>
+                    <a class="btn btn-link" id="link-tours" href="http://127.0.0.1:8000/tours/">Tours</a>
+                    <a class="btn btn-link" id="link-guides" href="http://127.0.0.1:8000/guides/">Guides</a>
                 </li>
                 {% endif %}
             </ul>
         </div>
     </nav>
+    <p id="info"></p>
+    <p id="output"></p>
 
+    <script src="{% static 'nav.js' %}"></script>
     <div class="container p-5 my-5 bg-dark text-white">
         <h1>Time for a vacation!</h1>
         <p>Surprise your body, mind and soul. Take a rest and explore the most beautifull places on the planet with our help!</p>

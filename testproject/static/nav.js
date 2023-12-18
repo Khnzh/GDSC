@@ -52,7 +52,7 @@ const startListening = () => {
   isListening = true;
   info.textContent = "Listening...";
 };
-var audioElement = null
+// var audioElement = null
 const stopListening = () => {
   isListening = false;
   info.textContent = "Listening for keyword...";
@@ -64,42 +64,42 @@ function yourFunction(result) {
       outp = result.replace(/\s/g, "").replace(/\.$/, '')
       console.log(outp)
       switch (outp) {
-        case 'readfirstdescription':
-          console.log('true');
-          audioElement = document.getElementById('11');
-          break;
-        case 'readseconddescription':
-          console.log('true');
-          audioElement = document.getElementById('12');
-          break;
-        case 'readlastdescription':
-          console.log('true');
-          audioElement = document.getElementById('13');
-          break;
-          case 'readfirstname':
-            console.log('true');
-            audioElement = document.getElementById('a11');
-            break;
-            case 'readsecondname':
-          console.log('true');
-          audioElement = document.getElementById('a12');
-          break;
-          case 'readlastname':
-          console.log('true');
-          audioElement = document.getElementById('a13');
-          break;
-          case 'readfirstprice':
-            console.log('true');
-            audioElement = document.getElementById('b11');
-            break;
-            case 'readsecondprice':
-          console.log('true');
-          audioElement = document.getElementById('b12');
-          break;
-          case 'readlastprice':
-          console.log('true');
-          audioElement = document.getElementById('b13');
-          break;
+        // case 'readfirstdescription':
+        //   console.log('true');
+        //   audioElement = document.getElementById('11');
+        //   break;
+        // case 'readseconddescription':
+        //   console.log('true');
+        //   audioElement = document.getElementById('12');
+        //   break;
+        // case 'readthirddescription':
+        //   console.log('true');
+        //   audioElement = document.getElementById('13');
+        //   break;
+        //   case 'readfirstname':
+        //     console.log('true');
+        //     audioElement = document.getElementById('a11');
+        //     break;
+        //     case 'readsecondname':
+        //   console.log('true');
+        //   audioElement = document.getElementById('a12');
+        //   break;
+        //   case 'readthirdname':
+        //   console.log('true');
+        //   audioElement = document.getElementById('a13');
+        //   break;
+        //   case 'readfirstprice':
+        //     console.log('true');
+        //     audioElement = document.getElementById('b11');
+        //     break;
+        //     case 'readsecondprice':
+        //   console.log('true');
+        //   audioElement = document.getElementById('b12');
+        //   break;
+        //   case 'readthirdprice':
+        //   console.log('true');
+        //   audioElement = document.getElementById('b13');
+        //   break;
           case 'goguides':
           console.log('true');
           var guidesLink = document.getElementById('link-guides');
@@ -119,9 +119,9 @@ function yourFunction(result) {
       
 // var audioElement = document.getElementById('11');
   // Play the audio
-  if (audioElement) {
-      audioElement.play();
-  }
+//   if (audioElement) {
+//       audioElement.play();
+//   }
   if (guidesLink) {
     // Simulate a click on the link
     guidesLink.click();
