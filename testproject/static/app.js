@@ -66,39 +66,39 @@ function yourFunction(result) {
       switch (outp) {
         case 'readfirstdescription':
           console.log('true');
-          audioElement = document.getElementById('11');
+          var audioElement = document.getElementById('11');
           break;
         case 'readseconddescription':
           console.log('true');
-          audioElement = document.getElementById('12');
+          var audioElement = document.getElementById('12');
           break;
         case 'readlastdescription':
           console.log('true');
-          audioElement = document.getElementById('13');
+          var audioElement = document.getElementById('13');
           break;
           case 'readfirstname':
             console.log('true');
-            audioElement = document.getElementById('a11');
+            var audioElement = document.getElementById('a11');
             break;
             case 'readsecondname':
           console.log('true');
-          audioElement = document.getElementById('a12');
+          var audioElement = document.getElementById('a12');
           break;
           case 'readlastname':
           console.log('true');
-          audioElement = document.getElementById('a13');
+          var audioElement = document.getElementById('a13');
           break;
           case 'readfirstprice':
             console.log('true');
-            audioElement = document.getElementById('b11');
+            var audioElement = document.getElementById('b11');
             break;
             case 'readsecondprice':
           console.log('true');
-          audioElement = document.getElementById('b12');
+          var audioElement = document.getElementById('b12');
           break;
           case 'readlastprice':
           console.log('true');
-          audioElement = document.getElementById('b13');
+          var audioElement = document.getElementById('b13');
           break;
           case 'goguides':
           console.log('true');
@@ -115,6 +115,8 @@ function yourFunction(result) {
         default:
           // Handle the case where outp doesn't match any of the specified values
           console.log('Not a recognized description.');
+          guidesLink = null;
+          audioElement = null;
       }
       
 // var audioElement = document.getElementById('11');
@@ -128,6 +130,7 @@ function yourFunction(result) {
   } else {
     console.error('Link element not found.');
   }
+  result = null
   }
 }
 // if (result !== null && result !== undefined) {

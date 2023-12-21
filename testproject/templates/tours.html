@@ -119,6 +119,7 @@
           <p id="closeBtn" onclick="closePopup()">Close</p>
         </div>
       </div>
+      <script src="https://code.responsivevoice.org/responsivevoice.js"></script>
     <script>
         // Function to open the popup
         function openPopup() {
@@ -128,28 +129,15 @@
         // Function to close the popup
         function closePopup() {
           document.getElementById("overlay").style.display = "none";
-  
-          // Get the text to be spoken
           var textToSpeak = "Welcome to tour page.";
-  
-          // Check if the browser supports the SpeechSynthesis API
-          if ("speechSynthesis" in window) {
-            var synthesis = window.speechSynthesis;
-  
-            // Create a new SpeechSynthesisUtterance object
-            var utterance = new SpeechSynthesisUtterance(textToSpeak);
-  
-            // Optional: Set voice and other parameters
-            utterance.voice = speechSynthesis.getVoices()[1];
-            utterance.pitch = 1;
-            utterance.rate = 1;
-            utterance.volume = 1;
-  
-            // Speak the text
-            synthesis.speak(utterance);
-          } else {
-            alert("Your browser does not support text-to-speech.");
-          }
+
+    // Use Google Text-to-Speech API
+    responsiveVoice.speak(textToSpeak, "US English Female", {
+      pitch: 1,
+      rate: 1,
+      volume: 1
+    });
+
         }
   
         // Open the popup when the page loads
