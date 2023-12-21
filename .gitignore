@@ -1,0 +1,5 @@
+# Ignore migrations folder
+GDSC/testproject/testapp/migrations/
+
+# Ignore settings file
+GDSC/testproject/testproject/settings.py
